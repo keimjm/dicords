@@ -1,7 +1,7 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    flex: 0.20;
+    flex: 0.18;
     height: 100vh;
     background-color: #3b3f44;
 }
@@ -91,6 +91,9 @@
 
 .home-page {
     display: flex;
+    height: 100%;
+
+    /* width: 100%; */
 }
 
 
@@ -192,11 +195,11 @@ body {
 
 .message-container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     box-sizing: border-box;
     display: flex;
-    flex: 0.75;
+    flex: 0.77;
     flex-direction: column;
 }
 
@@ -208,3 +211,8 @@ body {
 .view-messages-container {
     height: 100%;
 }
+
+/* .app {
+    height: 100%;
+    display: flex;
+} */

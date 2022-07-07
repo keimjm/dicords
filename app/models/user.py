@@ -1,4 +1,5 @@
 from .db import db
+from .member import members
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -9,7 +10,15 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    # image_url = db.Column(db.Text)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    user_members = db.relationship("Server",
+                                   secondary=members,
+                                   back_populates="server_members",
+                                   # Question: unsure about cascade
+                                   # cascade="all, delete"
+                                   )
 
     @property
     def password(self):
