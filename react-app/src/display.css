@@ -1,0 +1,147 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 0.20;
+    height: 100vh;
+    background-color: #3b3f44;
+}
+
+.sidebar-top {
+    display: flex;
+    border-bottom: 3px solid #26282c;
+    padding: 20px;
+    background-color: #3b3f44;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.sidebar-channels {
+    flex: 1;
+}
+
+.sidebar-add-icon {
+    cursor: pointer;
+}
+
+.sidebar-add-icon:hover {
+    color: white;
+}
+
+.sidebar-channel-header {
+    display: flex;
+    color: lightgray;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #3b3f44;
+    align-items: center;
+}
+
+.sidebar-channel-block {
+    flex: 1;
+}
+
+.channel-header {
+    display: flex;
+    align-items: center;
+}
+
+.hash {
+    font-size: 30px;
+    padding: 8px;
+}
+
+.channel > h4 {
+    
+    background-color: #3b3f44;
+    align-items: center;
+    padding-left: 20px;
+    color: lightgray;
+    display: flex;
+    cursor: pointer;
+}
+
+.channel > h4:hover {
+    background-color: #40464b;
+    color: white;
+    /* padding: 2px; */
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    color: lightgray;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #2f3135;
+    border-top: 1px solid gray;
+    
+}
+
+.sidebar-profile-info {
+    flex: 1;
+    padding: 10px;
+}
+
+.sidebar-profile-info > h3 {
+    color: white;
+}
+
+
+.home-page {
+    display: flex;
+}
+
+
+.server-container {
+    display: flex;
+    flex: 0.05;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #2f3135;
+}
+
+body {
+    background-color: #2f3135;
+}
+
+.fa-discord {
+    color: white;
+}
+
+.server-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 48px;
+    text-decoration: none;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #36393f;
+    color: #dcddde;
+    margin-bottom: 8px;
+    transition: background-color .15s ease-out, color .15s ease-out, border-radius .15s ease-out;
+
+}
+
+.server-button:hover {
+    background-color: #586fc0;
+    border-radius: 15px;
+
+}
+
+.bottom-border {
+    margin-left: 5px;
+    margin-bottom: 8px;
+    height: 2px;
+    border-radius: 1px;
+    width: 32px;
+    background-color: rgba(255,255,255,0.06);
+}
