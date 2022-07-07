@@ -3,8 +3,8 @@ from .member import members
 from datetime import datetime
 
 
-class User(db.Model):
-    __tablename__ = 'users'
+class Relationship(db.Model):
+    __tablename__ = 'relationship'
 
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(40), nullable=False, unique=True)

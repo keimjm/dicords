@@ -15,7 +15,7 @@ class Channel(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
     # relationships
-    server = db.relationship("Server", back_populates="channels")
+    servers = db.relationship("Server", back_populates="channels")
 
     def to_dict(self, **kwargs):
 
