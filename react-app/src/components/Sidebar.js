@@ -7,12 +7,18 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import {Avatar} from '@material-ui/core'
 import DefaultAvatar from '../Discord-Logo-White.svg'
 import '../display.css'
+import { useSelector } from 'react-redux'
 
-function Sidebar() {
+function Sidebar({channels}) {
+
+    const current = useSelector(state => state.servers)["current"]
+    const sessionUser = useSelector(state => state.session)
+    
+
   return (
     <div className="sidebar">
         <div className='sidebar-top'>
-            <h3>User Name</h3>
+            <h3>{current?.server_name || "DIRECT MESSAGES" }</h3>
             <ExpandMoreIcon />
         </div>
 
@@ -37,7 +43,7 @@ function Sidebar() {
         <div className='sidebar-profile'>
                 <Avatar src={DefaultAvatar} />
                 <div className='sidebar-profile-info'>
-                    <h3>demo user</h3>
+                    <h3>{sessionUser?.username}</h3>
                     <p>#12394</p>
                     </div>
 
