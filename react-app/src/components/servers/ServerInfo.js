@@ -6,16 +6,24 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import {Avatar} from '@material-ui/core'
 import DefaultAvatar from '../../Discord-Logo-White.svg'
 import '../../display.css'
-import { useSelector } from 'react-redux'
-import { useParams, useLocation } from 'react-router-dom'
+import { useSelector, useDispatch} from 'react-redux'
+import { useParams, useLocation, useHistory } from 'react-router-dom'
 import FriendList from '../FriendList'
+import {deleteServer} from '../../store/server'
 
 function ServerInfo() {
+    const history = useHistory();
+    const dispatch = useDispatch();
     const url = useLocation().pathname
     const serverId = url.split("/")[2]
     const sessionUser = useSelector(state => state.session.user)
     const server = useSelector(state => state.servers[serverId])
     let content = null
+
+    const handleDelete = () => {
+        const data = dispatch(deleteServer(serverId))
+        history.push("/channels/@me")
+      }
     
     
     const channels = server?.channels
@@ -51,7 +59,7 @@ function ServerInfo() {
     <div className="sidebar">
         <div className='sidebar-top'>
             <h3>{server?.server_name || "DIRECT MESSAGES" }</h3>
-            <ExpandMoreIcon />
+            <ExpandMoreIcon onClick={handleDelete} />
         </div>
 
         
