@@ -1,6 +1,7 @@
 const GET_SERVERS = 'server/GET_SERVERS'
 const CURRENT_SERVER = 'server/CURRENT_SERVER'
 const CREATE_SERVER = 'server/CREATE_SERVER'
+const DELETE_SERVER = 'server/DELETE_SERVER'
 
 
 const retrieveAction = (servers) => ({
@@ -16,6 +17,11 @@ const current = (server) => ({
 const create = (server) => ({
   type: CREATE_SERVER,
   server
+})
+
+const deleteAction = (id) => ({
+  type: DELETE_SERVER, 
+  id
 })
 
 
@@ -68,7 +74,23 @@ export const createServer = (payload) => async (dispatch) => {
     return data
 
 }
+}
 
+
+export const deleteServer = (serverId) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}`,{ 
+    method: "DELETE"
+})
+
+if (response.ok) {
+  const data = await response.json()
+  if(data.errors){
+    return;
+  }
+  if(data.Successful) dispatch(deleteAction(serverId))
+
+  else return data
+}
 }
 
 
@@ -79,6 +101,10 @@ export default function serverReducer(state = {}, action) {
         return {...state, ...servers}
       case CREATE_SERVER:
         return {...state, [action.server.id]: action.server}
+      case DELETE_SERVER:
+        let newState = {...state}
+        delete newState[action.id]
+        return newState
       default:
         return state;
     }
