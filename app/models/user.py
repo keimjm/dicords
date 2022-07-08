@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    # image_url = db.Column(db.Text)
+    image_url = db.Column(db.Text)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     user_members = db.relationship("Server",

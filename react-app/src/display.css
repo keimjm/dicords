@@ -92,6 +92,7 @@
 .home-page {
     display: flex;
     height: 100%;
+    flex: .75;
 
     /* width: 100%; */
 }
@@ -99,7 +100,7 @@
 
 .server-container {
     display: flex;
-    flex: 0.05;
+    width: 62px;
     flex-direction: column;
     height: 100vh;
     background-color: #2f3135;
@@ -113,7 +114,7 @@ body {
     color: white;
 }
 
-.server-button {
+.server-button, .friend-icon{
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -212,7 +213,20 @@ body {
     height: 100%;
 }
 
-/* .app {
+.app {
     height: 100%;
     display: flex;
-} */
+}
+
+.no-decor {
+    text-decoration: none;
+    color: #1A1E20;
+}
+
+.friend-list {
+    color: white;
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+
+}
