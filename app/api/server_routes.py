@@ -2,6 +2,7 @@ from ntpath import join
 from flask import Blueprint, jsonify, session, request
 from app.models import db, Server, Channel, User, members, server
 from app.forms.server_form import CreateServer, UpdateServer
+from app.forms.channel_form import CreateChannel
 from sqlalchemy.orm import joinedload
 from flask_login import login_required
 from app.util import format_errors
@@ -71,5 +72,26 @@ def update_server():
 
         server = Server.query.options(joinedload('channels'), joinedload(
             'server_members')).get(server.id)
+        return server.to_dict(channels=server.channels, members=server.server_members)
+    return {'errors': format_errors(form.errors)}, 401
+
+
+@login_required
+@server_routes.route('/<int:id>/channels', methods=['POST'])
+def create_channel(id):
+
+    form = CreateChannel()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        channel = Channel(
+            channel_name=form.data['channel_name'],
+            server_id=form.data['server_id']
+        )
+
+        db.session.add(channel)
+        db.session.commit()
+        server = Server.query.options(joinedload('channels'), joinedload(
+            'server_members')).get(id)
         return server.to_dict(channels=server.channels, members=server.server_members)
     return {'errors': format_errors(form.errors)}, 401

@@ -18,7 +18,7 @@ class Server(db.Model):
     server_members = db.relationship("User",
                                      secondary=members,
                                      back_populates="user_members")
-    channels = db.relationship("Channel", back_populates="servers")
+    channels = db.relationship("Channel", back_populates="servers", cascade="delete, all")
     # Question: unsure about cascade
     # cascade="all, delete")
 

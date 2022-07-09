@@ -16,9 +16,12 @@ import { getAllUsers } from './store/user';
 import Server from './components/servers/Server';
 import Sidebar from './components/servers/Sidebar';
 import FriendList from './components/FriendList'
+import { Modal } from './context/Modal';
+import ChannelSettings from './components/channels/ChannelSettings';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [channelModalIsOpen, setChannelModalIsOpen] = useState(false);
   const dispatch = useDispatch();
   const servers = useSelector(state => state.servers)
   const users = useSelector(state => state.users)
@@ -45,6 +48,8 @@ function App() {
     <div className="app">
     <BrowserRouter>
       {/* <NavBar /> */}
+
+
       <ProtectedRoute path='/channels/' >
           <Sidebar/>
         </ProtectedRoute>

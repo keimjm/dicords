@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './Modal.css';
 
 const ModalContext = React.createContext();
+// const ChannelSetting = React.createContext();
 
 export function ModalProvider({ children }) {
     const modalRef = useRef();
@@ -17,7 +18,7 @@ export function ModalProvider({ children }) {
             <ModalContext.Provider value={value}>
                 {children}
             </ModalContext.Provider>
-            <div ref={modalRef} />
+            <div className='provider' ref={modalRef} />
         </>
     );
 }
@@ -31,7 +32,23 @@ export function Modal({ onClose, children }) {
             <div id="modal-background" onClick={onClose} />
             <div id="modal-content">
                 {children}
-            </div>
+        </div>
+        </div>,
+        modalNode
+    );
+}
+
+export function SettingsModal({onClose, children}) {
+    const modalNode = useContext(ModalContext);
+    if (!modalNode) return null;
+
+    return ReactDOM.createPortal(
+        <div id="modal">
+            <div id="settings-background" >
+            <div id="setting-model-child">
+                {children}
+        </div>
+        </div>
         </div>,
         modalNode
     );

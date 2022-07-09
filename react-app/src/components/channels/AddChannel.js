@@ -1,16 +1,18 @@
 import React, {useState} from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux'
-import {createServer} from '../../store/server'
+import {createChannel} from '../../store/server'
 
 
-function AddServer() {
+
+function AddChannel() {
     const history = useHistory();
-    const [serverName, setServerName] = useState("");
+    const [channelName, setChannelName] = useState("");
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const sessionUser = useSelector(state => state.session.user)
-    
+    const url = useLocation().pathname
+    const serverId = url.split("/")[2]
 
 
     const handleSubmit = async (e) => {
@@ -28,39 +30,38 @@ function AddServer() {
         // }
 
         let payload = {
-            serverName, 
-            adminId: sessionUser.id
+            channelName, 
+            serverId 
         }
-
-        console.log(payload)
     
-        let createdServer = await dispatch(createServer(payload)).catch(async (res) => {
+        let createdChannel = await dispatch(createChannel(payload)).catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
     
-        if (createdServer) {
-          history.push(`/channels/${createdServer.id}/${createdServer.id}`)
+        if (createdChannel) {
+          history.push(`/channels/${serverId}/${createdChannel.id}`)
         }
     }
 
   return (
-    <div>
+    <div className='create-channel-block'>
+      <header>Create Text Channel</header>
         <form onSubmit={handleSubmit}>
         {errors.length > 0 && <ul className='errors'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>}
         <input
         type="text"
-        placeholder="Server Name"
+        placeholder="Channel Name"
         required
         className='input'
-        value={serverName}
-        onChange={(e) => setServerName(e.target.value)} />
-        <button className='button' type="submit">Create Server</button>
+        value={channelName}
+        onChange={(e) => setChannelName(e.target.value)} />
+        <button className='button' type="submit">Add Channel</button>
         </form>
     </div>
   )
 }
 
-export default AddServer
+export default AddChannel

@@ -11,7 +11,7 @@ import { useParams, useLocation, useHistory } from 'react-router-dom'
 import FriendList from '../FriendList'
 import {deleteServer} from '../../store/server'
 
-function ServerInfo() {
+function ServerInfo({setShowModal, setSettingsModal}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const url = useLocation().pathname
@@ -19,6 +19,8 @@ function ServerInfo() {
     const sessionUser = useSelector(state => state.session.user)
     const server = useSelector(state => state.servers[serverId])
     let content = null
+    let home = serverId === '@me' || false
+
 
     const handleDelete = () => {
         const data = dispatch(deleteServer(serverId))
@@ -28,7 +30,7 @@ function ServerInfo() {
     
     const channels = server?.channels
 
-    if (serverId === '@me') content =  (<FriendList />)
+    if (home) content =  (<FriendList />)
     else content =  (
         <div className="sidebar-channel-block">
         <div className='sidebar-channel-header'>                
@@ -36,17 +38,22 @@ function ServerInfo() {
             {/* <ExpandMoreIcon /> */}
         <h4>TEXT CHANNELS</h4>
         </div>
-        <AddIcon className='sidebar-add-icon' />
+        <AddIcon className='sidebar-add-icon' onClick={() => setShowModal()} />
 
         </div>
         <div className='sidebar-channels'>
+            <ul>
          {channels?.map(channel => {
             return (
-            <div className="channel">
-            <h4><span className="hash">#</span>{channel?.channel_name}</h4>
-        </div>
+            <li className="channel">
+                <div className="channel-name">
+            <h4><span className="hash">#</span>{channel?.channel_name} </h4> 
+            </div>
+            <div className='channel-settings-icon'><SettingsIcon onClick={() => setSettingsModal()}  /></div>
+        </li>
             )
-         })}   
+         })} 
+         </ul>  
 
 
        </div>
@@ -59,7 +66,8 @@ function ServerInfo() {
     <div className="sidebar">
         <div className='sidebar-top'>
             <h3>{server?.server_name || "DIRECT MESSAGES" }</h3>
-            <ExpandMoreIcon onClick={handleDelete} />
+
+            {home || <SettingsIcon onClick={handleDelete} />}
         </div>
 
         

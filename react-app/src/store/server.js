@@ -2,6 +2,7 @@ const GET_SERVERS = 'server/GET_SERVERS'
 const CURRENT_SERVER = 'server/CURRENT_SERVER'
 const CREATE_SERVER = 'server/CREATE_SERVER'
 const DELETE_SERVER = 'server/DELETE_SERVER'
+const CREATE_CHANNEL = 'server/CREATE_CHANNEL'
 
 
 const retrieveAction = (servers) => ({
@@ -23,6 +24,7 @@ const deleteAction = (id) => ({
   type: DELETE_SERVER, 
   id
 })
+
 
 
 
@@ -91,6 +93,34 @@ if (response.ok) {
 
   else return data
 }
+}
+
+
+export const createChannel = (payload) => async (dispatch) => {
+  const {
+    channelName,
+    serverId
+  } = payload 
+
+  const form = new FormData()
+  form.append('channel_name', channelName)
+  form.append('server_id', serverId)
+
+  const response = await fetch(`/api/servers/${serverId}/channels`, {
+    method: "POST",
+    body: form
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+
+    dispatch(create(data));
+    return data
+  }
+
 }
 
 
