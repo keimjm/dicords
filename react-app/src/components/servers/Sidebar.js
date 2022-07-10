@@ -7,7 +7,7 @@ import Server from './Server'
 import AddServer from './AddServer'
 import AddChannel from '../channels/AddChannel'
 import ChannelSettings from '../channels/ChannelSettings'
-// import SettingModal from '../modal/SettingsModal'
+import ServerSettings from './ServerSettings'
 
 
 function Sidebar() {
@@ -21,14 +21,15 @@ function Sidebar() {
     const [showCreateServerModal, setShowCreateServerModal] = useState(false);
     const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
     const [showChannelSettingsModal, setShowChannelSettingsModal] = useState(false);
+    const [showServerSettingsModal, setShowServerSettingsModal] = useState(false);
 
-    console.log(showChannelSettingsModal)
+
 
 
   return (
     <>
     <Server setShowModal={() => setShowCreateServerModal(true)} />
-    <ServerInfo setShowModal={() => setShowCreateChannelModal(true)} setSettingsModal={() => setShowChannelSettingsModal(true)} />
+    <ServerInfo setShowModal={() => setShowCreateChannelModal(true)} setChannelSettingsModal={() => setShowChannelSettingsModal(true)} setShowServerSettingsModal={() => setShowServerSettingsModal(true)} />
     {showCreateServerModal && (
       <Modal onClose={() => setShowCreateServerModal(false)}>
           <h4>Create a new Server</h4>
@@ -44,6 +45,12 @@ function Sidebar() {
     {showChannelSettingsModal && (
       <SettingsModal onClose={() => setShowChannelSettingsModal(false)}>
           <ChannelSettings  onClose={() => setShowChannelSettingsModal(false)}/>
+      </SettingsModal>
+  )}
+
+{showServerSettingsModal && (
+      <SettingsModal onClose={() => setShowServerSettingsModal(false)}>
+          <ServerSettings  onClose={() => setShowServerSettingsModal(false)}/>
       </SettingsModal>
   )}
     </>

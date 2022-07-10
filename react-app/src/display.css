@@ -297,14 +297,38 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    color: #b9bbbe;
 }
 
 .channel-settings-edit {
+    position: relative;
     padding: 60px 40px 80px;
+    width: 100%;
     max-width: 740px;
     min-width: 460px;
     min-height: 100%;
     box-sizing: border-box;
+    color: #b9bbbe;
+}
+
+.channel-update {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-update > input {
+    box-sizing: border-box;
+    padding: 10px;
+    height: 40px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 3px;
+    color: #dcddde;
+    background-color: #202225;
+    border: none;
+    outline: 0;
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    transition: border-color .2s ease-in-out;
 }
 
 /* .setting-modal-background {
@@ -323,3 +347,28 @@ ul {
     left: 50%;
     transform: translate(-50%, -50%);
 } */
+
+
+.settings-bottom-border {
+    margin-left: 5px;
+    margin-bottom: 8px;
+    height: 2px;
+    border-radius: 1px;
+    width: 202px;
+    background-color: rgba(255,255,255,0.06);
+}
+
+.settings-delete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 10px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    color: #b9bbbe;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+}

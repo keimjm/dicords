@@ -31,8 +31,6 @@ function AddServer() {
             serverName, 
             adminId: sessionUser.id
         }
-
-        console.log(payload)
     
         let createdServer = await dispatch(createServer(payload)).catch(async (res) => {
           const data = await res.json();

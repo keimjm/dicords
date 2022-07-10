@@ -9,9 +9,9 @@ import '../../display.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { useParams, useLocation, useHistory } from 'react-router-dom'
 import FriendList from '../FriendList'
-import {deleteServer} from '../../store/server'
 
-function ServerInfo({setShowModal, setSettingsModal}) {
+
+function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSettingsModal}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const url = useLocation().pathname
@@ -21,11 +21,9 @@ function ServerInfo({setShowModal, setSettingsModal}) {
     let content = null
     let home = serverId === '@me' || false
 
-
-    const handleDelete = () => {
-        const data = dispatch(deleteServer(serverId))
-        history.push("/channels/@me")
-      }
+    const changeChannel = (channel) => {
+        history.push(`/channels/${serverId}/${channel.id}`)
+    }
     
     
     const channels = server?.channels
@@ -46,10 +44,10 @@ function ServerInfo({setShowModal, setSettingsModal}) {
          {channels?.map(channel => {
             return (
             <li className="channel">
-                <div className="channel-name">
+                <div className="channel-name" onClick={() => changeChannel(channel)}>
             <h4><span className="hash">#</span>{channel?.channel_name} </h4> 
             </div>
-            <div className='channel-settings-icon'><SettingsIcon onClick={() => setSettingsModal()}  /></div>
+            <div className='channel-settings-icon'><SettingsIcon onClick={() => setChannelSettingsModal()}  /></div>
         </li>
             )
          })} 
@@ -67,7 +65,7 @@ function ServerInfo({setShowModal, setSettingsModal}) {
         <div className='sidebar-top'>
             <h3>{server?.server_name || "DIRECT MESSAGES" }</h3>
 
-            {home || <SettingsIcon onClick={handleDelete} />}
+            {home || <SettingsIcon  onClick={() => setShowServerSettingsModal()}  />}
         </div>
 
         

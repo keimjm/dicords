@@ -10,3 +10,8 @@ class CreateChannel(FlaskForm):
 
     channel_name = StringField("channel_name")
     server_id = IntegerField("server_id")
+
+
+class UpdateChannel(FlaskForm):
+    channel_name = StringField("channel_name")
+    id = IntegerField("id")
