@@ -2,6 +2,7 @@ const GET_SERVERS = 'server/GET_SERVERS'
 const CURRENT_SERVER = 'server/CURRENT_SERVER'
 const CREATE_SERVER = 'server/CREATE_SERVER'
 const DELETE_SERVER = 'server/DELETE_SERVER'
+const UPDATE_SERVER = 'server/UPDATE_SERVER'
 
 
 const retrieveAction = (servers) => ({
@@ -27,6 +28,7 @@ const deleteAction = (id) => ({
 
 
 
+
 export const getAllServers = () => async (dispatch) => {
   const response = await fetch('/api/servers');
 
@@ -47,8 +49,6 @@ export const setCurrent = (server) => async (dispatch) => {
 
 
 export const createServer = (payload) => async (dispatch) => {
-
-  console.log('REDUCER')
 
   const {
     serverName,
@@ -91,6 +91,111 @@ if (response.ok) {
 
   else return data
 }
+}
+
+
+export const createChannel = (payload) => async (dispatch) => {
+  const {
+    channelName,
+    serverId
+  } = payload 
+
+  const form = new FormData()
+  form.append('channel_name', channelName)
+  form.append('server_id', serverId)
+
+  const response = await fetch(`/api/servers/${serverId}/channels`, {
+    method: "POST",
+    body: form
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+
+    dispatch(create(data));
+    return data
+  }
+
+}
+
+
+export const updateServer = (payload) => async dispatch => {
+  const {
+    serverName,
+    adminId, 
+    serverId
+  } = payload
+  
+  const form = new FormData();
+  form.append('server_name', serverName)
+  form.append('user_id', adminId)
+
+
+  const response = await fetch(`/api/servers/${serverId}`, {
+    method: "PUT",
+    body: form
+  });
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+
+    dispatch(create(data));
+    return data
+}
+
+}
+
+
+export const updateChannel = (payload) => async (dispatch) => {
+  const {
+    channelName,
+    channelId,
+    serverId
+  } = payload 
+
+  const form = new FormData()
+  form.append('channel_name', channelName)
+  form.append('server_id', serverId)
+  form.append('id', channelId)
+
+
+  const response = await fetch(`/api/servers/${serverId}/channels`, {
+    method: "PUT",
+    body: form
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+
+    dispatch(create(data));
+    return data
+  }
+
+}
+
+
+export const deleteChannel = (channelId) => async (dispatch) => {
+  const response = await fetch(`/api/channels/${channelId}`,{ 
+    method: "DELETE",
+})
+
+if (response.ok) {
+  const data = await response.json()
+  if(data.errors){
+    return;
+  }
+  dispatch(create(data))
+
+}
+
 }
 
 

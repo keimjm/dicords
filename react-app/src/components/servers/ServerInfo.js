@@ -9,9 +9,9 @@ import '../../display.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { useParams, useLocation, useHistory } from 'react-router-dom'
 import FriendList from '../FriendList'
-import {deleteServer} from '../../store/server'
 
-function ServerInfo() {
+
+function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSettingsModal}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const url = useLocation().pathname
@@ -19,16 +19,16 @@ function ServerInfo() {
     const sessionUser = useSelector(state => state.session.user)
     const server = useSelector(state => state.servers[serverId])
     let content = null
+    let home = serverId === '@me' || false
 
-    const handleDelete = () => {
-        const data = dispatch(deleteServer(serverId))
-        history.push("/channels/@me")
-      }
+    const changeChannel = (channel) => {
+        history.push(`/channels/${serverId}/${channel.id}`)
+    }
     
     
     const channels = server?.channels
 
-    if (serverId === '@me') content =  (<FriendList />)
+    if (home) content =  (<FriendList />)
     else content =  (
         <div className="sidebar-channel-block">
         <div className='sidebar-channel-header'>                
@@ -36,17 +36,22 @@ function ServerInfo() {
             {/* <ExpandMoreIcon /> */}
         <h4>TEXT CHANNELS</h4>
         </div>
-        <AddIcon className='sidebar-add-icon' />
+        <AddIcon className='sidebar-add-icon' onClick={() => setShowModal()} />
 
         </div>
         <div className='sidebar-channels'>
+            <ul>
          {channels?.map(channel => {
             return (
-            <div className="channel">
-            <h4><span className="hash">#</span>{channel?.channel_name}</h4>
-        </div>
+            <li className="channel"onClick={() => changeChannel(channel)} >
+                <div className="channel-name" >
+            <h4><span className="hash">#</span>{channel?.channel_name} </h4> 
+            </div>
+            <div className='channel-settings-icon'><SettingsIcon onClick={() => setChannelSettingsModal()}  /></div>
+        </li>
             )
-         })}   
+         })} 
+         </ul>  
 
 
        </div>
@@ -59,7 +64,8 @@ function ServerInfo() {
     <div className="sidebar">
         <div className='sidebar-top'>
             <h3>{server?.server_name || "DIRECT MESSAGES" }</h3>
-            <ExpandMoreIcon onClick={handleDelete} />
+
+            {home || <SettingsIcon  onClick={() => setShowServerSettingsModal()}  />}
         </div>
 
         
@@ -71,7 +77,7 @@ function ServerInfo() {
                 <Avatar src={DefaultAvatar} />
                 <div className='sidebar-profile-info'>
                     <h4>{sessionUser?.username}</h4>
-                    <p>#12394</p>
+                    <p>#13594</p>
                     </div>
 
                     <div>

@@ -1,10 +1,19 @@
 import React from 'react'
-import ChatHeader from './ChatHeader'
+import {useLocation} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+
 
 function Chat() {
+  const url = useLocation().pathname
+  const friendId = url.split("/")[3]
+  const users = useSelector(state => state.users.users)
+
+  const friend = users.filter(user => user.id == friendId)[0]
+
+
   return (
     <div className='message-container'>
-      <header className='chat-header'><span className='hash'>#</span>Channel</header>
+      <header className='chat-header'><span className='hash'>@</span>{friend?.username}</header>
       <div className='message-content'>
         <div className='view-messages-container'>
         <div className='messages'>

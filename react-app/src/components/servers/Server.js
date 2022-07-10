@@ -14,9 +14,7 @@ function Server({setShowModal}) {
   // }
 
   const addNewServer = () => {
-    console.log("SHOWING MODAL")
     setShowModal()
-    
   }
 
 
