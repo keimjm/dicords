@@ -17,7 +17,7 @@ import Server from './components/servers/Server';
 import Sidebar from './components/servers/Sidebar';
 import FriendList from './components/FriendList'
 import { Modal } from './context/Modal';
-import ChannelSettings from './components/channels/ChannelSettings';
+import Chat from './components/chat/ChatPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -78,7 +78,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/channels/@me/:messageId' >
-          <DirectMessage/>
+          <Chat/>
         </ProtectedRoute>
 
       </Switch>

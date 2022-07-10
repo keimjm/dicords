@@ -43,8 +43,8 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
             <ul>
          {channels?.map(channel => {
             return (
-            <li className="channel">
-                <div className="channel-name" onClick={() => changeChannel(channel)}>
+            <li className="channel"onClick={() => changeChannel(channel)} >
+                <div className="channel-name" >
             <h4><span className="hash">#</span>{channel?.channel_name} </h4> 
             </div>
             <div className='channel-settings-icon'><SettingsIcon onClick={() => setChannelSettingsModal()}  /></div>
@@ -77,7 +77,7 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
                 <Avatar src={DefaultAvatar} />
                 <div className='sidebar-profile-info'>
                     <h4>{sessionUser?.username}</h4>
-                    <p>#12394</p>
+                    <p>#13594</p>
                     </div>
 
                     <div>

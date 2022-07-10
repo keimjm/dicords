@@ -1,13 +1,18 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import AddIcon from '@material-ui/icons/Add'
-import { Link } from 'react-router-dom'
+import { Link , useHistory} from 'react-router-dom'
 
 
 function FriendList() {
     const users = useSelector(state => state.users?.users)
+    const history = useHistory();
 
     if (!users) return null
+
+    const showChat = (user) => {
+      history.push(`/channels/@me/${user.id}`)
+    }
 
 
   return (
@@ -22,8 +27,8 @@ function FriendList() {
     <div className='sidebar-channels'>
      {users?.map(user => {
         return (
-        <div className="friend-list">
-                <div className='friend-icon'>
+        <div className="friend-list" onClick={() => showChat(user)}>
+        <div className='friend-icon'>
           <Link to=''>
         <span><i className="fa-brands fa-discord"></i></span>
         </Link>
