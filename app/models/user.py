@@ -1,5 +1,7 @@
+from turtle import back
 from .db import db
 from .member import members
+from .direct_message import DirectMessage
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -19,6 +21,11 @@ class User(db.Model, UserMixin):
                                    # Question: unsure about cascade
                                    # cascade="all, delete"
                                    )
+
+    sender = db.relationship(
+        "DirectMessage", back_populates="message_sent", foreign_keys=[DirectMessage.sender_id])
+    receiver = db.relationship(
+        "DirectMessage", back_populates="message_received", foreign_keys=[DirectMessage.recipient_id])
 
     @property
     def password(self):
