@@ -23,6 +23,7 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
 
     const changeChannel = (channel) => {
         history.push(`/channels/${serverId}/${channel.id}`)
+        
     }
     
     

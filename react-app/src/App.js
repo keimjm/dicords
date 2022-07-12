@@ -18,6 +18,7 @@ import Sidebar from './components/servers/Sidebar';
 import FriendList from './components/FriendList'
 import { Modal } from './context/Modal';
 import Chat from './components/chat/ChatPage';
+import ChatChannel from './components/chat/ChatChannel';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,10 +55,8 @@ function App() {
           <Sidebar/>
         </ProtectedRoute>
         <Switch>
-        <ProtectedRoute exact path='/channels/@me' >
+        <ProtectedRoute path='/channels/@me' >
         {/* <Sidebar /> */}
-        </ProtectedRoute>
-        <ProtectedRoute path='/channels/:serverId/:channelId' >
         </ProtectedRoute>
         </Switch>
 
@@ -68,18 +67,23 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute exact={true} path='/channels/@me/:messageId' >
+          <Chat/>
+        </ProtectedRoute>
+        <ProtectedRoute exact={true}  path='/channels/:serverId/:channelId' >
+          <ChatChannel />
+        </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <SplashPage/>
         </ProtectedRoute>
+
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/channels/@me/:messageId' >
-          <Chat/>
-        </ProtectedRoute>
+
 
       </Switch>
     </BrowserRouter>

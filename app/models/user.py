@@ -26,12 +26,14 @@ class User(db.Model, UserMixin):
         "DirectMessage", back_populates="message_sent", foreign_keys=[DirectMessage.sender_id])
     receiver = db.relationship(
         "DirectMessage", back_populates="message_received", foreign_keys=[DirectMessage.recipient_id])
+    sender_channel = db.relationship(
+        "ChannelMessage", back_populates="channel_sender")
 
-    @property
+    @ property
     def password(self):
         return self.hashed_password
 
-    @password.setter
+    @ password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 

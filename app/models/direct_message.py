@@ -21,3 +21,14 @@ class DirectMessage(db.Model):
         "User", back_populates="sender", foreign_keys=[sender_id])
     message_received = db.relationship(
         "User", back_populates="receiver", foreign_keys=[recipient_id])
+
+    def to_dict(self, username):
+        # user = User.query.filter(User.id == self.sender_id).all()
+        return {
+            'id': self.id,
+            'sender_id': self.sender_id,
+            'recipient_id': self.recipient_id,
+            'message': self.message,
+            'username': username,
+            # 'updated_at': self.updated_at
+        }

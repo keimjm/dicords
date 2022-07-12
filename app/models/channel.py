@@ -1,3 +1,4 @@
+from app.models import channel_message
 from .db import db
 from datetime import datetime
 from sqlalchemy.orm import validates
@@ -16,6 +17,7 @@ class Channel(db.Model):
 
     # relationships
     servers = db.relationship("Server", back_populates="channels")
+    channel_message = db.relationship("ChannelMessage", back_populates="message_channel")
 
     def to_dict(self, **kwargs):
 
