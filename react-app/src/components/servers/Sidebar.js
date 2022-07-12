@@ -55,7 +55,7 @@ function Sidebar() {
   )}
   {showJoinServerModal && (
       <Modal onClose={() => setShowJoinServerModal(false)}>
-          <JoinServer />
+          <JoinServer onClose={() => setShowJoinServerModal(false)}/> 
       </Modal>
   )}
     </>

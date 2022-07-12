@@ -32,7 +32,7 @@ function Server({setShowAddModal, setShowJoinModal}) {
         </Link>
         </div>
         <div className='bottom-border'></div>
-        {servers?.map((server) => {
+        {joinedServers?.map((server) => {
           const shortened = server.server_name.split(' ').map(word => word[0]).join("")
           return (
             <Link to={`/channels/${server.id}`} server={server} className="no-decor">

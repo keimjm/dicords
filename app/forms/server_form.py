@@ -20,3 +20,7 @@ class UpdateServer(FlaskForm):
     id = IntegerField('id')
     server_name = StringField('server_name', validators=[DataRequired()])
     server_members = DictField('server_members')
+
+
+class JoinServer(FlaskForm):
+    user_id = IntegerField('user_id', validators=[DataRequired()])

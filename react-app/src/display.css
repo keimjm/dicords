@@ -537,3 +537,45 @@ position: relative;
     outline: 0;
     border: 0;
 }
+
+
+.join-server-button {
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.members-container {
+    overflow: hidden scroll;
+    overflow-y: auto;
+    background-color: #2f3136;
+    width: 240px;
+    padding: 0 0 20px;
+    color: #8e9297;
+    margin-left: 10px;
+}
+
+.member-header {
+    padding: 24px 8px 0 16px;
+    height: 40px;
+    /* font-family: 'ginto-normal', "Whitney", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: .25px;
+    font-weight: 600;
+}
+
+.member-list {
+    list-style: none;
+    margin-left: 10px;
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    height: 42px;
+    padding: 0 8px;
+    position: relative;
+}

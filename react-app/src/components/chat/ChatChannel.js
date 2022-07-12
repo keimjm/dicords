@@ -63,6 +63,7 @@ const sendChat = (e) => {
 
 
   return (
+    <>
     <div className='message-container'>
       <header className='chat-header'><span className='hash'>#</span>{channel?.channel_name}</header>
       <div className='message-content'>
@@ -91,6 +92,18 @@ const sendChat = (e) => {
       </div>
       </div>
     </div>
+    <div className='members-container'>
+      <div className='member-header'>MEMBERS - {server?.members?.length}</div>
+      <ul className='member-list'>
+      {server?.members.map(member => {
+        return (
+            <div className='member'><Avatar src={DefaultAvatar} className="message-icon" /> {member.username}</div>
+        )
+      })}
+      </ul>
+    </div>
+
+    </>
   )
 }
 

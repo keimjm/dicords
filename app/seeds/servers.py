@@ -14,25 +14,22 @@ def seed_servers():
             server_name="Marnie's Room",
             user_id=2,
             server_members=[x for x in users if x.username ==
-                            "demo" or x.username == "chase"]
+                            "Demo" or x.username == "chase"]
         ),
         Server(
             server_name="Bobbie's Burgers",
             user_id=3,
-            server_members=[x for x in users if x.username ==
-                            "demo" or x.username == "charlie"]
+            server_members=[x for x in users if x.username == "charlie"]
         ),
         Server(
             server_name="Milk Steak",
             user_id=4,
-            server_members=[x for x in users if x.username ==
-                            "demo" or x.username == "bobbie"]
+            server_members=[x for x in users if x.username == "bobbie"]
         ),
         Server(
             server_name="Prodigious Stead",
             user_id=5,
-            server_members=[x for x in users if x.username ==
-                            "demo" or x.username == "marnie"]
+            server_members=[x for x in users if x.username == "marnie"]
         ),
 
 
