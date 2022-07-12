@@ -26,21 +26,28 @@ class User(db.Model, UserMixin):
         "DirectMessage", back_populates="message_sent", foreign_keys=[DirectMessage.sender_id])
     receiver = db.relationship(
         "DirectMessage", back_populates="message_received", foreign_keys=[DirectMessage.recipient_id])
+    sender_channel = db.relationship(
+        "ChannelMessage", back_populates="channel_sender")
 
-    @property
+    @ property
     def password(self):
         return self.hashed_password
 
-    @password.setter
+    @ password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
-        return {
+    def to_dict(self, **kwargs):
+
+        out = {
             'id': self.id,
             'username': self.username,
             'email': self.email
         }
+
+        for key, collection in kwargs.items():
+            out[key] = [ele.to_dict() for ele in collection]
+        return out

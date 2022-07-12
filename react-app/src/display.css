@@ -208,10 +208,7 @@ body {
     box-sizing: border-box;
 }
 
-.messages {
-    overflow: hidden auto;
-    height: calc(100% - 68px);
-}
+
 
 .message-container {
     width: 100%;
@@ -256,15 +253,14 @@ ul {
 }
 
 
-.create-channel-block {
-    /* position: relative;
+.create-block {
+    position: relative;
     width: 440px;
-    /* background-color: #36393f; 
+    background-color: #36393f;
     box-shadow: 0 0 0 1px #20222599, 0 2px 10px 0 #00000033;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    color: white; */
 }
 
 .channel-settings {
@@ -440,4 +436,104 @@ ul {
 
 .splash-nav-container {
     margin-top: 25px;
+}
+
+.messages {
+    overflow: hidden auto;
+    height: calc(100% - 68px);
+
+}
+
+.message-item {
+    position: relative;
+    display: flex;
+    margin-top: 17px;
+    padding: 2px 40px 2px 32px;
+    margin-right: 8px;
+    color: white;
+}
+
+.message-icon {
+position: relative;
+    right: 16px;
+    margin-top: calc(4px - 0.125rem);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.message-sender {
+    display: flex;
+    align-items: flex-end;
+    line-height: 1.375rem;
+    min-height: 1.375rem;
+}
+
+.message-text {
+    font-size: 1rem;
+    line-height: 1.375rem;
+    color: #dcddde;
+    font-weight: 400;
+}
+
+.create-channel {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-radius: 5px 5px 0 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: cent
+    
+}
+
+.create-form {
+    border-radius: 5px 5px 0 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-form > input {
+    margin-left: 16px;
+    margin-right: 8px;
+    padding: 10px;
+    height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 93%;
+    border-radius: 3px;
+    color: #dcddde;
+    background-color: #202225;
+    outline: 0;
+    border: 0;
+    margin-bottom: 20px;
+}
+
+
+.cancel-submit {
+    box-shadow: inset 0 1px 0 #2f313699;
+    background-color: #2f3136;
+    border-radius: 0 0 5px 5px;
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.button {
+    color: white;
+    background-color: #4d59d5;
+    height: 38px;
+    transition: background-color .17s ease;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 2px 16px;
+    outline: 0;
+    border: 0;
 }

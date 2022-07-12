@@ -14,3 +14,20 @@ class ChannelMessage(db.Model):
         'channels.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
+
+    channel_sender = db.relationship(
+        "User", back_populates="sender_channel")
+
+    message_channel = db.relationship(
+        "Channel", back_populates="channel_message")
+
+    def to_dict(self, username):
+        # user = User.query.filter(User.id == self.sender_id).all()
+        return {
+            'id': self.id,
+            'sender_id': self.sender_id,
+            'channel_id': self.channel_id,
+            'message': self.message,
+            'username': username,
+            # 'updated_at': self.updated_at
+        }
