@@ -45,9 +45,9 @@ function AddChannel() {
     }
 
   return (
-    <div className='create-channel-block'>
-      <header>Create Text Channel</header>
-        <form onSubmit={handleSubmit}>
+    <div className='create-block'>
+      <header className='create-channel'>Create Text Channel</header>
+        <form className='create-form' onSubmit={handleSubmit}>
         {errors.length > 0 && <ul className='errors'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>}
@@ -58,7 +58,11 @@ function AddChannel() {
         className='input'
         value={channelName}
         onChange={(e) => setChannelName(e.target.value)} />
-        <button className='button' type="submit">Add Channel</button>
+        <div className='cancel-submit'>
+          <button>Cancel</button>
+          <button className='button' type="submit">Add Channel</button>
+
+        </div>
         </form>
     </div>
   )

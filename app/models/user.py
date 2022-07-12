@@ -40,9 +40,14 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
-        return {
+    def to_dict(self, **kwargs):
+
+        out = {
             'id': self.id,
             'username': self.username,
             'email': self.email
         }
+
+        for key, collection in kwargs.items():
+            out[key] = [ele.to_dict() for ele in collection]
+        return out

@@ -43,8 +43,9 @@ function AddServer() {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
+    <div className='create-block'>
+      <header className='create-channel'>Create Server</header>
+        <form className='create-form' onSubmit={handleSubmit}>
         {errors.length > 0 && <ul className='errors'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>}
@@ -55,7 +56,10 @@ function AddServer() {
         className='input'
         value={serverName}
         onChange={(e) => setServerName(e.target.value)} />
+        <div className='cancel-submit'>
+          <button>Cancel</button>
         <button className='button' type="submit">Create Server</button>
+        </div>
         </form>
     </div>
   )
