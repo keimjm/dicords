@@ -26,13 +26,14 @@ function Server({setShowAddModal, setShowJoinModal}) {
 
   return (
       <div className="server-container">
+        <div className='server-nav-container'>
         <div className='server-button'>
           <Link to='/channels/@me'>
         <span><i className="fa-brands fa-discord"></i></span>
         </Link>
         </div>
         <div className='bottom-border'></div>
-        {servers?.map((server) => {
+        {joinedServers?.map((server) => {
           const shortened = server.server_name.split(' ').map(word => word[0]).join("")
           return (
             <Link to={`/channels/${server.id}`} server={server} className="no-decor">
@@ -43,6 +44,7 @@ function Server({setShowAddModal, setShowJoinModal}) {
           <div className='bottom-border'></div>
           <div className='server-button' onClick={addNewServer}><i className="fa-solid fa-plus"></i></div>
           <div className='server-button' onClick={joinServer}><i className="fa-solid fa-compass"></i></div>
+        </div>
         </div>
   )
 }

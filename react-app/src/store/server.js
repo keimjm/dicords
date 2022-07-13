@@ -199,6 +199,29 @@ if (response.ok) {
 }
 
 
+export const joinServer = (userId, serverId) => async (dispatch) => {
+
+  const form = new FormData()
+  form.append('user_id', userId)
+
+  const response = await fetch(`/api/servers/${serverId}/join`, {
+    method: "POST",
+    body: form
+
+  })
+
+  if (response.ok) {
+    const data = await response.json()
+    if(data.errors){
+      return;
+    }
+    dispatch(create(data))
+  }
+
+}
+
+
+
 export default function serverReducer(state = {}, action) {
     switch (action.type) {
       case GET_SERVERS:

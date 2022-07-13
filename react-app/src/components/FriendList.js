@@ -29,9 +29,7 @@ function FriendList() {
         return (
         <div className="friend-list" onClick={() => showChat(user)}>
         <div className='friend-icon'>
-          <Link to=''>
         <span><i className="fa-brands fa-discord"></i></span>
-        </Link>
         </div>
         <h4>{user.username}</h4>
     </div>

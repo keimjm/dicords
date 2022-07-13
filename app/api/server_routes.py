@@ -1,7 +1,7 @@
 from ntpath import join
 from flask import Blueprint, jsonify, session, request
 from app.models import db, Server, Channel, User, members, server
-from app.forms.server_form import CreateServer, UpdateServer
+from app.forms.server_form import CreateServer, UpdateServer, JoinServer
 from app.forms.channel_form import CreateChannel, UpdateChannel
 from sqlalchemy.orm import joinedload
 from flask_login import login_required
@@ -104,9 +104,26 @@ def update_channel(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print(form.data["channel_name"])
         channel = Channel.query.get(form.data["id"])
         channel.channel_name = form.data["channel_name"]
+        db.session.commit()
+        server = Server.query.options(joinedload('channels'), joinedload(
+            'server_members')).get(id)
+        return server.to_dict(channels=server.channels, members=server.server_members)
+    return {'errors': format_errors(form.errors)}, 401
+
+
+@login_required
+@server_routes.route('/<int:id>/join', methods=["POST"])
+def join_server(id):
+
+    form = JoinServer()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        server = Server.query.get(id)
+        member = User.query.get(form.data["user_id"])
+        server.server_members.append(member)
         db.session.commit()
         server = Server.query.options(joinedload('channels'), joinedload(
             'server_members')).get(id)
