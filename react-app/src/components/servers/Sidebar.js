@@ -9,6 +9,7 @@ import AddChannel from '../channels/AddChannel'
 import ChannelSettings from '../channels/ChannelSettings'
 import ServerSettings from './ServerSettings'
 import JoinServer from './JoinServer'
+import ProfileSettings from '../ProfileSettings'
 
 
 function Sidebar() {
@@ -24,6 +25,7 @@ function Sidebar() {
     const [showChannelSettingsModal, setShowChannelSettingsModal] = useState(false);
     const [showServerSettingsModal, setShowServerSettingsModal] = useState(false);
     const [showJoinServerModal, setShowJoinServerModal] = useState(false);
+    const [showProfileModal, setShowProfileModal] = useState(false);
 
 
 
@@ -31,7 +33,7 @@ function Sidebar() {
   return (
     <>
     <Server setShowAddModal={() => setShowCreateServerModal(true)} setShowJoinModal={() => setShowJoinServerModal(true)}/>
-    <ServerInfo setShowModal={() => setShowCreateChannelModal(true)} setChannelSettingsModal={() => setShowChannelSettingsModal(true)} setShowServerSettingsModal={() => setShowServerSettingsModal(true)} />
+    <ServerInfo setShowModal={() => setShowCreateChannelModal(true)} setChannelSettingsModal={() => setShowChannelSettingsModal(true)} setShowServerSettingsModal={() => setShowServerSettingsModal(true)} showProfileSettings={() => setShowProfileModal(true)} />
     {showCreateServerModal && (
       <Modal onClose={() => setShowCreateServerModal(false)}>
           <AddServer  />
@@ -58,6 +60,14 @@ function Sidebar() {
           <JoinServer onClose={() => setShowJoinServerModal(false)}/> 
       </Modal>
   )}
+
+  {showProfileModal && (
+    <SettingsModal onClose={() => setShowProfileModal(false)}>
+    <ProfileSettings  onClose={() => setShowProfileModal(false)}/>
+</SettingsModal>
+  )
+
+  }
     </>
   )
 }

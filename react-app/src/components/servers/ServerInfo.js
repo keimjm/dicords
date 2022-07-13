@@ -11,7 +11,7 @@ import { useParams, useLocation, useHistory } from 'react-router-dom'
 import FriendList from '../FriendList'
 
 
-function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSettingsModal}) {
+function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSettingsModal, showProfileSettings}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const url = useLocation().pathname
@@ -82,7 +82,7 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
                     </div>
 
                     <div>
-                        <SettingsIcon />
+                        <SettingsIcon onClick={() => showProfileSettings()} />
                     </div>
                </div>
 
