@@ -36,12 +36,12 @@ function Sidebar() {
     <ServerInfo setShowModal={() => setShowCreateChannelModal(true)} setChannelSettingsModal={() => setShowChannelSettingsModal(true)} setShowServerSettingsModal={() => setShowServerSettingsModal(true)} showProfileSettings={() => setShowProfileModal(true)} />
     {showCreateServerModal && (
       <Modal onClose={() => setShowCreateServerModal(false)}>
-          <AddServer  />
+          <AddServer onClose={() => setShowCreateServerModal(false)}/>
       </Modal>
   )}
     {showCreateChannelModal && (
       <Modal onClose={() => setShowCreateChannelModal(false)}>
-          <AddChannel  />
+          <AddChannel onClose={() => setShowCreateChannelModal(false)}  />
       </Modal>
   )}
     {showChannelSettingsModal && (

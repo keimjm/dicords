@@ -42,11 +42,6 @@ export const getAllServers = () => async (dispatch) => {
   }
 }
 
-export const setCurrent = (server) => async (dispatch) => {
-  dispatch(current(server))
-
-}
-
 
 export const createServer = (payload) => async (dispatch) => {
 
@@ -66,14 +61,16 @@ export const createServer = (payload) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
+    dispatch(create(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
     if (data.errors) {
-      return;
+      return data.errors;
     }
-
-    dispatch(create(data));
-    return data
-
-}
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 }
 
 
@@ -111,12 +108,15 @@ export const createChannel = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    dispatch(create(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
     if (data.errors) {
-      return data;
+      return data.errors;
     }
-
-    dispatch(create(data));
-    return data
+  } else {
+    return ['An error occurred. Please try again.']
   }
 
 }
@@ -138,15 +138,19 @@ export const updateServer = (payload) => async dispatch => {
     method: "PUT",
     body: form
   });
+
   if (response.ok) {
     const data = await response.json();
+    dispatch(create(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
     if (data.errors) {
-      return;
+      return data.errors;
     }
-
-    dispatch(create(data));
-    return data
-}
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 
 }
 
@@ -171,15 +175,18 @@ export const updateChannel = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    dispatch(create(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
     if (data.errors) {
-      return data;
+      return data.errors;
     }
-
-    dispatch(create(data));
-    return data
+  } else {
+    return ['An error occurred. Please try again.']
+  }
   }
 
-}
 
 
 export const deleteChannel = (channelId) => async (dispatch) => {
@@ -188,12 +195,16 @@ export const deleteChannel = (channelId) => async (dispatch) => {
 })
 
 if (response.ok) {
-  const data = await response.json()
-  if(data.errors){
-    return;
-  }
+  const data = await response.json();
   dispatch(create(data))
-
+  return null;
+} else if (response.status < 500) {
+  const data = await response.json();
+  if (data.errors) {
+    return data.errors;
+  }
+} else {
+  return ['An error occurred. Please try again.']
 }
 
 }
@@ -211,14 +222,21 @@ export const joinServer = (userId, serverId) => async (dispatch) => {
   })
 
   if (response.ok) {
-    const data = await response.json()
-    if(data.errors){
-      return;
-    }
+    const data = await response.json();
     dispatch(create(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+    
   }
 
-}
+
 
 
 

@@ -49,6 +49,9 @@ function App() {
     <div className="app">
     <BrowserRouter>
       {/* <NavBar /> */}
+      <Route path='/' exact={true} >
+          <SplashPage/>
+        </Route>
 
 
       <ProtectedRoute path='/channels/' >
@@ -72,9 +75,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact={true}  path='/channels/:serverId/:channelId' >
           <ChatChannel />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <SplashPage/>
         </ProtectedRoute>
 
         <ProtectedRoute path='/users' exact={true} >

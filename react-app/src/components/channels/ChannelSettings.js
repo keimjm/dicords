@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
 import { updateChannel, deleteChannel } from '../../store/server'
@@ -6,20 +6,27 @@ import { updateChannel, deleteChannel } from '../../store/server'
 function ChannelSettings({onClose}) {
   const url = useLocation().pathname
   const history = useHistory()
+  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const channelId = url.split("/")[3]
   const serverId = url.split("/")[2]
   const server = useSelector(state => state.servers[serverId])
   const sessionUser = useSelector(state => state.session.user)
   const channel = server?.channels.filter(channel => channel.id == channelId)[0]
+  const [channelName, setChannelName] = useState(channel?.channel_name);
 
   const handleDelete = () => {
     const data = dispatch(deleteChannel(channelId))
     onClose()
   }
 
-  const updateChannelName = async (channelName) => {
-  
+  const updateChannelName = async () => {
+
+    if(channelName == "") {
+      setErrors(['Channel Name is required']) 
+      return
+    }
+
     
     let payload = {
       channelName, 
@@ -28,13 +35,11 @@ function ChannelSettings({onClose}) {
   }
 
 
-  let updatedChannel = await dispatch(updateChannel(payload)).catch(async (res) => {
-    const data = await res.json();
-    if (data && data.errors) ;
-  });
-
-  if (updatedChannel) {
-    history.push(`/channels/${serverId}/${updatedChannel.id}`)
+  let data = await dispatch(updateChannel(payload))
+  if (data) {
+    setErrors(data)
+  } else {
+   onClose()
   }
 
   }
@@ -52,13 +57,17 @@ function ChannelSettings({onClose}) {
       </div>
         <div className='channel-settings-edit'>
           <h3>OVERVIEW</h3>
-          <form className='channel-update'>
+          <form className='channel-update' onSubmit={updateChannelName}>
+          {errors.length > 0 && <ul className='errors'>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>}
             <label>CHANNEL NAME</label>
             <input
              type='text'
              className='input'
-             value={channel?.channel_name}
-             onChange={(e) => updateChannelName(e.target.value)} /> 
+             required
+             value={channelName}
+             onChange={(e) => setChannelName(e.target.value)} /> 
             
           </form>
         </div>

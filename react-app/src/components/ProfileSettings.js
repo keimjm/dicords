@@ -35,15 +35,18 @@ function ProfileSettings({onClose}) {
           <h3>My Account</h3>
           <div className='user-brief-info'>
             <div className='user-background'></div>
+            <div className='user-icon-name'>
             <div><Avatar src={DefaultAvatar} /></div>
             <div>{sessionUser?.username}#0004</div>
-          </div>
-          <div className='user-information'>
+            </div>
+            <div className='user-information'>
             <div>
-                <div>USERNAME<div>{sessionUser?.username}</div></div>
-                <div>EMAIL<div>{sessionUser?.email}</div></div>
+                <div className='info-field'>USERNAME<div>{sessionUser?.username}</div></div>
+                <div className='info-field'>EMAIL<div>{sessionUser?.email}</div></div>
             </div>
           </div>
+          </div>
+
         </div>
     </div>
   )

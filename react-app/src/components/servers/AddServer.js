@@ -4,7 +4,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import {createServer} from '../../store/server'
 
 
-function AddServer() {
+function AddServer({onClose}) {
     const history = useHistory();
     const [serverName, setServerName] = useState("");
     const dispatch = useDispatch();
@@ -32,14 +32,17 @@ function AddServer() {
             adminId: sessionUser.id
         }
     
-        let createdServer = await dispatch(createServer(payload)).catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
-    
-        if (createdServer) {
-          history.push(`/channels/${createdServer.id}/${createdServer.id}`)
+        let data = await dispatch(createServer(payload))
+        if (data) {
+          setErrors(data)
         }
+        else {
+          onClose()
+        }
+    }
+
+    const handleCancel = () => {
+      onClose()
     }
 
   return (
@@ -57,7 +60,7 @@ function AddServer() {
         value={serverName}
         onChange={(e) => setServerName(e.target.value)} />
         <div className='cancel-submit'>
-          <button>Cancel</button>
+          <button type='button' className='button' onClick={handleCancel}>Cancel</button>
         <button className='button' type="submit">Create Server</button>
         </div>
         </form>
