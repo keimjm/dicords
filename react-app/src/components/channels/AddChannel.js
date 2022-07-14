@@ -47,6 +47,7 @@ function AddChannel({onClose}) {
         type="text"
         placeholder="Channel Name"
         required
+        maxLength="25"
         className='input'
         value={channelName}
         onChange={(e) => setChannelName(e.target.value)} />

@@ -57,6 +57,7 @@ function ServerSettings({onClose}) {
              type='text'
              className='input'
              required
+             maxLength="25"
              value={serverName}
              onChange={(e) => setServerName(e.target.value)} /> 
           </form>
