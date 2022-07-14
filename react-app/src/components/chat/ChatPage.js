@@ -76,7 +76,8 @@ const sendChat = (e) => {
               <form className='message-form' onSubmit={sendChat}>
                 <input 
                 type='text' 
-                className='message-input' 
+                className='message-input'
+                maxLength="100"
                 placeholder={`@${friend?.username}`} 
                 value={chatInput} 
                 onChange={(e) => setChatInput(e.target.value)} />

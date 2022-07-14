@@ -66,6 +66,7 @@ function ChannelSettings({onClose}) {
              type='text'
              className='input'
              required
+             maxLength="25"
              value={channelName}
              onChange={(e) => setChannelName(e.target.value)} /> 
             

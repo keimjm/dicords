@@ -56,6 +56,7 @@ function AddServer({onClose}) {
         type="text"
         placeholder="Server Name"
         required
+        maxLength="25"
         className='input'
         value={serverName}
         onChange={(e) => setServerName(e.target.value)} />
