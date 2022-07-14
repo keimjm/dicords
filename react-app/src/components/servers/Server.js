@@ -11,7 +11,7 @@ function Server({setShowAddModal, setShowJoinModal}) {
   let serverSet = new Set()
   joinedServers.map(server => serverSet.add(server.id))
 
-  joinedServers = [...joinedServers, ...servers.filter(server => server.id === sessionUser.id)]
+  joinedServers = [...joinedServers, ...servers.filter(server => server.user_id === sessionUser.id)]
 
 
 

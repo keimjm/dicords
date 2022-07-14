@@ -21,7 +21,6 @@ function FriendList() {
     <div className='channel-header'>
         {/* <ExpandMoreIcon /> */}
     </div>
-    <AddIcon className='sidebar-add-icon' />
 
     </div>
     <div className='sidebar-channels'>

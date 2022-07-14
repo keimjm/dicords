@@ -86,6 +86,7 @@ const sendChat = (e) => {
                 className='message-input' 
                 placeholder='say something' 
                 maxLength="100"
+                required
                 value={chatInput} 
                 onChange={(e) => setChatInput(e.target.value)} />
               </form>
