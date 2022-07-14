@@ -5,43 +5,35 @@ import {createChannel} from '../../store/server'
 
 
 
-function AddChannel() {
+function AddChannel({onClose}) {
     const history = useHistory();
     const [channelName, setChannelName] = useState("");
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
-    const sessionUser = useSelector(state => state.session.user)
     const url = useLocation().pathname
     const serverId = url.split("/")[2]
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const errors = [];
-    
-        // if (serverName.length < 3 || serverName.length > 255) {
-        //   errors.push('Title length must be at least 3 and less than 255');
-        // }
-
-    
-        // if (errors.length) {
-        //   setErrors([...errors]);
-        //   return;
-        // }
+  
 
         let payload = {
             channelName, 
             serverId 
         }
     
-        let createdChannel = await dispatch(createChannel(payload)).catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
-    
-        if (createdChannel) {
-          history.push(`/channels/${serverId}/${createdChannel.id}`)
+        let data = await dispatch(createChannel(payload))
+        if (data) {
+          setErrors(data)
         }
+        else {
+          onClose()
+        }
+    }
+
+    const handleCancel = () => {
+      onClose()
     }
 
   return (
@@ -59,7 +51,7 @@ function AddChannel() {
         value={channelName}
         onChange={(e) => setChannelName(e.target.value)} />
         <div className='cancel-submit'>
-          <button>Cancel</button>
+          <button type='button' className='button' onClick={handleCancel}>Cancel</button>
           <button className='button' type="submit">Add Channel</button>
 
         </div>

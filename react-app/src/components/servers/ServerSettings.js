@@ -11,14 +11,16 @@ function ServerSettings({onClose}) {
   const serverId = url.split("/")[2]
   const sessionUser = useSelector(state => state.session.user)
   const server = useSelector(state => state.servers[serverId])
+  const [serverName, setServerName] = useState(server?.server_name);
 
 
   const handleDelete = () => {
     const data = dispatch(deleteServer(serverId))
-    history.push("/channels/@me")
+    onClose()
+    history.push(`/channels/@me`)
   }
 
-  const updateServerName = async (serverName) => {
+  const updateServerName = async () => {
 
     let payload = {
       serverName, 
@@ -27,13 +29,11 @@ function ServerSettings({onClose}) {
   }
 
 
-  let createdServer = await dispatch(updateServer(payload)).catch(async (res) => {
-    const data = await res.json();
-    if (data && data.errors) setErrors(data.errors);
-  });
-
-  if (createdServer) {
-    history.push(`/channels/${createdServer.id}/${createdServer.id}`)
+  let data = await dispatch(updateServer(payload))
+  if (data) {
+    setErrors(data)
+  } else {
+    onClose()
   }
 
   }
@@ -51,14 +51,14 @@ function ServerSettings({onClose}) {
       </div>
         <div className='channel-settings-edit'>
           <h3>OVERVIEW</h3>
-          <form className='channel-update'>
+          <form className='channel-update' onSubmit={updateServerName}>
             <label>SERVER NAME</label>
             <input
              type='text'
              className='input'
-             value={server?.server_name}
-             onChange={(e) => updateServerName(e.target.value)} /> 
-            
+             required
+             value={serverName}
+             onChange={(e) => setServerName(e.target.value)} /> 
           </form>
         </div>
     </div>

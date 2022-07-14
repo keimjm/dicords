@@ -37,7 +37,7 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
             {/* <ExpandMoreIcon /> */}
         <h4>TEXT CHANNELS</h4>
         </div>
-        <AddIcon className='sidebar-add-icon' onClick={() => setShowModal()} />
+        {server?.user_id === sessionUser?.id &&<AddIcon className='sidebar-add-icon' onClick={() => setShowModal()} />}
 
         </div>
         <div className='sidebar-channels'>
@@ -48,7 +48,7 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
                 <div className="channel-name" >
             <h4><span className="hash">#</span>{channel?.channel_name} </h4> 
             </div>
-            <div className='channel-settings-icon'><SettingsIcon onClick={() => setChannelSettingsModal()}  /></div>
+            <div className='channel-settings-icon'>{server?.user_id === sessionUser?.id && <SettingsIcon onClick={() => setChannelSettingsModal()} />}</div>
         </li>
             )
          })} 
@@ -66,7 +66,7 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
         <div className='sidebar-top'>
             <h3>{server?.server_name || "DIRECT MESSAGES" }</h3>
 
-            {home || <SettingsIcon  onClick={() => setShowServerSettingsModal()}  />}
+            {home || (server?.user_id === sessionUser?.id && <SettingsIcon  onClick={() => setShowServerSettingsModal() }  />)}
         </div>
 
         

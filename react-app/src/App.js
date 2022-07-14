@@ -19,6 +19,7 @@ import FriendList from './components/FriendList'
 import { Modal } from './context/Modal';
 import Chat from './components/chat/ChatPage';
 import ChatChannel from './components/chat/ChatChannel';
+import NotFound from './components/NotFound'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,9 @@ function App() {
     <div className="app">
     <BrowserRouter>
       {/* <NavBar /> */}
+      <Route path='/' exact={true} >
+          <SplashPage/>
+        </Route>
 
 
       <ProtectedRoute path='/channels/' >
@@ -56,8 +60,8 @@ function App() {
         </ProtectedRoute>
         <Switch>
         <ProtectedRoute path='/channels/@me' >
-        {/* <Sidebar /> */}
         </ProtectedRoute>
+
         </Switch>
 
       <Switch>
@@ -72,9 +76,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact={true}  path='/channels/:serverId/:channelId' >
           <ChatChannel />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <SplashPage/>
         </ProtectedRoute>
 
         <ProtectedRoute path='/users' exact={true} >
