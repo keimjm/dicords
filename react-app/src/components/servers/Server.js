@@ -1,17 +1,20 @@
 import { Link } from 'react-router-dom'
 import React, {useState} from 'react'
 import {useDispatch, useSelector } from 'react-redux'
-import {setCurrent} from '../../store/server'
 
 
 function Server({setShowAddModal, setShowJoinModal}) {
   const dispatch = useDispatch()
-  const joinedServers = Object.values(useSelector(state => state.session.user.servers))
+  const sessionUser = useSelector(state => state.session.user)
+  let joinedServers = Object.values(useSelector(state => state.session.user.servers))
   const servers = Object.values(useSelector(state => state.servers))
+  let serverSet = new Set()
+  joinedServers.map(server => serverSet.add(server.id))
 
-  // const setCurrentServer = (server) => {
-  //   dispatch(setCurrent(server))
-  // }
+  joinedServers = [...joinedServers, ...servers.filter(server => server.id === sessionUser.id)]
+
+
+
 
   const addNewServer = () => {
     setShowAddModal()

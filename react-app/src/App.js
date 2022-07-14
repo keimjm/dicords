@@ -19,6 +19,7 @@ import FriendList from './components/FriendList'
 import { Modal } from './context/Modal';
 import Chat from './components/chat/ChatPage';
 import ChatChannel from './components/chat/ChatChannel';
+import NotFound from './components/NotFound'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,8 +60,8 @@ function App() {
         </ProtectedRoute>
         <Switch>
         <ProtectedRoute path='/channels/@me' >
-        {/* <Sidebar /> */}
         </ProtectedRoute>
+
         </Switch>
 
       <Switch>

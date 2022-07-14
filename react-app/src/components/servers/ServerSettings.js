@@ -16,7 +16,8 @@ function ServerSettings({onClose}) {
 
   const handleDelete = () => {
     const data = dispatch(deleteServer(serverId))
-    history.push("/channels/@me")
+    onClose()
+    history.push(`/channels/@me`)
   }
 
   const updateServerName = async () => {

@@ -8,9 +8,9 @@ function JoinServer({onClose}) {
   const allServers = Object.values(useSelector(state => state.servers))
   const sessionUser = useSelector(state => state.session.user)
   let serversSet = new Set();
-  allServers.map(serverId => {serversSet.add(serverId)})
-  sessionUser.servers.map(serverId => serversSet.delete(serverId))
-  let servers = [...serversSet]
+  allServers.map(server => {serversSet.add(server.id)})
+  sessionUser.servers.map(server => serversSet.delete(server.id))
+  let servers = allServers.filter(server => serversSet.has(server.id) && server.user_id !== sessionUser.id)
 
   
 
@@ -18,8 +18,7 @@ function JoinServer({onClose}) {
 
   const joinAServer = async (server) => {
 
-    console.log("HITTING")
-    await dispatch(joinServer(server?.id, sessionUser?.id))
+    await dispatch(joinServer(sessionUser?.id, server?.id))
     await dispatch(authenticate())
     onClose()
   }
