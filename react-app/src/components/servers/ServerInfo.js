@@ -37,7 +37,7 @@ function ServerInfo({setShowModal, setChannelSettingsModal, setShowServerSetting
             {/* <ExpandMoreIcon /> */}
         <h4>TEXT CHANNELS</h4>
         </div>
-        {server?.user_id === sessionUser?.id &&<AddIcon className='sidebar-add-icon' onClick={() => setShowModal()} />}
+        {server?.user_id === sessionUser?.id && <AddIcon className='sidebar-add-icon' onClick={() => setShowModal()} />}
 
         </div>
         <div className='sidebar-channels'>
