@@ -30,7 +30,7 @@ function JoinServer({onClose}) {
     <div className='join-server-button'>
         {servers.map(server => {
             return (
-                <button className='button' onClick={() => joinAServer(server)}>{server?.server_name}</button>
+                <button key={server.id} className='button' onClick={() => joinAServer(server)}>{server?.server_name}</button>
             )
         })}
         </div>

@@ -20,6 +20,7 @@ import { Modal } from './context/Modal';
 import Chat from './components/chat/ChatPage';
 import ChatChannel from './components/chat/ChatChannel';
 import NotFound from './components/NotFound'
+import Placeholder from './components/Placeholder';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,7 +60,8 @@ function App() {
           <Sidebar/>
         </ProtectedRoute>
         <Switch>
-        <ProtectedRoute path='/channels/@me' >
+        <ProtectedRoute exact path='/channels/@me' >
+          <Placeholder />
         </ProtectedRoute>
 
         </Switch>
