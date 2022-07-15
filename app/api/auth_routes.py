@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
-from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import joinedload, subqueryload
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -27,7 +27,6 @@ def authenticate():
     if current_user.is_authenticated:
         user = User.query.options(joinedload(
             'user_members')).get(current_user.id)
-        print(user)
         return current_user.to_dict(servers=user.user_members)
     return {'errors': ['Unauthorized']}
 
@@ -46,7 +45,6 @@ def login():
         user = User.query.options(joinedload('user_members')).filter(
             User.email == form.data['email']).first()
         login_user(user)
-        print(user)
         return user.to_dict(servers=user.user_members)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

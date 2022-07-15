@@ -10,8 +10,9 @@ function Server({setShowAddModal, setShowJoinModal}) {
   const servers = Object.values(useSelector(state => state.servers))
   let serverSet = new Set()
   joinedServers.map(server => serverSet.add(server.id))
+  joinedServers = servers.filter(server => server.user_id === sessionUser.id || serverSet.has(server.id))
 
-  joinedServers = [...joinedServers, ...servers.filter(server => server.user_id === sessionUser.id)]
+
 
 
 
@@ -38,8 +39,9 @@ function Server({setShowAddModal, setShowJoinModal}) {
         <div className='bottom-border'></div>
         {joinedServers?.map((server) => {
           const shortened = server.server_name.split(' ').map(word => word[0]).join("")
+          console.log(server)
           return (
-            <Link to={`/channels/${server.id}`} server={server} className="no-decor">
+            <Link to={`/channels/${server.id}/${server?.channels[0].id}`} server={server} className="no-decor">
           <div className='server-button'>{shortened}</div>
           </Link>
           )

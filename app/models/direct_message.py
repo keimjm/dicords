@@ -30,5 +30,5 @@ class DirectMessage(db.Model):
             'recipient_id': self.recipient_id,
             'message': self.message,
             'username': username,
-            # 'updated_at': self.updated_at
+            'updated_at': self.updated_at
         }

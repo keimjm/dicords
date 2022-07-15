@@ -60,6 +60,7 @@ function ServerSettings({onClose}) {
              maxLength="25"
              value={serverName}
              onChange={(e) => setServerName(e.target.value)} /> 
+             <button className='button'>Edit Name</button>
           </form>
         </div>
     </div>

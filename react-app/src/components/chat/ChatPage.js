@@ -66,7 +66,7 @@ const sendChat = (e) => {
         <li className='message-item' key={ind}>
           <Avatar src={DefaultAvatar} className="message-icon" />
           <div className='message-content'>
-            <div className='message-sender'>{message.username} 07/10/2022</div>
+            <div className='message-sender'>{message.username} {message.updated_at}</div>
             <div className="message-text">{message.message}</div>
             </div>
         </li>
