@@ -24,11 +24,12 @@ class DirectMessage(db.Model):
 
     def to_dict(self, username):
         # user = User.query.filter(User.id == self.sender_id).all()
+        created_at = self.created_at.strftime('%m/%d/%Y')
         return {
             'id': self.id,
             'sender_id': self.sender_id,
             'recipient_id': self.recipient_id,
             'message': self.message,
             'username': username,
-            'updated_at': self.updated_at
+            'created_at': created_at
         }

@@ -801,3 +801,8 @@ position: relative;
     font-weight: bold;
     color: black;
 }
+
+.created_at {
+    font-size: 13px;
+    margin-left: 10px;
+}
