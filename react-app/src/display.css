@@ -806,3 +806,13 @@ position: relative;
     font-size: 13px;
     margin-left: 10px;
 }
+
+.placeholder-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.placeholder-content > h1, p {
+    padding: 10px;
+}

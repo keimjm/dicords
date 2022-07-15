@@ -23,8 +23,10 @@ function ChatChannel() {
   const dd = String(today.getDate()).padStart(2, '0');
   const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   const yyyy = today.getFullYear();
+  let empty = true
 
   today = mm + '/' + dd + '/' + yyyy;
+
 
   
 
@@ -34,7 +36,6 @@ function ChatChannel() {
     socket = io();
 
     socket.on("show_channel_msgs", (data) => {
-      console.log(data);
       data.messages.forEach(message => setMessages((messages => [...messages, message])))
       //setMessages(messages => [...messages, ])
     })
@@ -65,6 +66,8 @@ const sendChat = (e) => {
 }
 
 
+if (messages.length > 0) empty = false
+
   
 
 
@@ -74,16 +77,23 @@ const sendChat = (e) => {
       <header className='chat-header'><span className='hash'>#</span>{channel?.channel_name}</header>
       <div className='message-content'>
         <div className='view-messages-container'>
-        <ul className='messages'>
-    {messages.map((message, ind) => (
-        <li className='message-item' key={ind}>
-          <Avatar src={DefaultAvatar} className="message-icon" />
-          <div className='message-content'>
-          <div className='message-sender'>{message.username} <span className="created_at"> {message.created_at || today}</span></div>
-            <div className="message-text">{message.message}</div>
-            </div>
-        </li>
-    ))}
+          <ul className='messages'>
+        {!empty ? 
+            messages.map((message, ind) => (
+                  <li className='message-item' key={ind}>
+                    <Avatar src={DefaultAvatar} className="message-icon" />
+                    <div className='message-content'>
+                      <div className='message-sender'>{message.username} <span className="created_at"> {message.created_at || today}</span></div>
+                      <div className="message-text">{message.message}</div>
+                      </div>
+                  </li>)) :
+        <li className='message-item'>
+        <div className='message-content'>
+          <div className='message-sender'>Looks empty in here</div>
+          <div className="message-text">Type something in the chat to start this conversation</div>
+          </div>
+      </li> 
+    }
 </ul>
         <div className='send-message-container'>
               <form className='message-form' onSubmit={sendChat}>
