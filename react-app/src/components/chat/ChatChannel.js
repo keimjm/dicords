@@ -19,6 +19,12 @@ function ChatChannel() {
   const serverId = url.split("/")[2]
   const server = useSelector(state => state.servers[serverId])
   const channel = server?.channels.filter(channel => channel.id == channelId)[0]
+  let today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  const yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
 
   
 
@@ -73,7 +79,7 @@ const sendChat = (e) => {
         <li className='message-item' key={ind}>
           <Avatar src={DefaultAvatar} className="message-icon" />
           <div className='message-content'>
-            <div className='message-sender'>{message.username} 07/10/2022</div>
+          <div className='message-sender'>{message.username} <span className="created_at"> {message.created_at || today}</span></div>
             <div className="message-text">{message.message}</div>
             </div>
         </li>

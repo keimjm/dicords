@@ -14,6 +14,12 @@ function Chat() {
   const friendId = url.split("/")[3]
   const users = useSelector(state => state.users.users)
   const sessionUser = useSelector(state => state.session.user)
+  let today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  const yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
 
   const friend = users?.filter(user => user.id == friendId)[0]
 
@@ -39,7 +45,7 @@ function Chat() {
 
   useEffect(() => {
       setMessages([])
-      socket.emit("get_dm_msgs", {sender: sessionUser?.id, username: sessionUser?.username, recipient: friend?.id })
+      socket.emit("get_dm_msgs", {sender: sessionUser?.id, username: sessionUser?.username, recipient: friend?.id,  })
   }, [friend])
 
 
@@ -50,6 +56,7 @@ const sendChat = (e) => {
   socket.emit("chat", { sender: sessionUser.id, username: sessionUser.username, recipient: friend.id,  message: chatInput });
   // clear the input field after the message is sent
   setChatInput("")
+  // window.location.reload(false);
 }
 
 
@@ -66,7 +73,7 @@ const sendChat = (e) => {
         <li className='message-item' key={ind}>
           <Avatar src={DefaultAvatar} className="message-icon" />
           <div className='message-content'>
-            <div className='message-sender'>{message.username} {message.updated_at}</div>
+            <div className='message-sender'>{message.username} <span className="created_at"> {message.created_at || today}</span></div>
             <div className="message-text">{message.message}</div>
             </div>
         </li>
