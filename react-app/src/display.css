@@ -420,9 +420,10 @@ ul {
 
 
 .splash-page {
-    background-color: rgb(66, 78, 228);
+    background-color: #424ee4;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 #root {

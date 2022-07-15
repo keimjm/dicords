@@ -69,7 +69,7 @@ function ChannelSettings({onClose}) {
              maxLength="25"
              value={channelName}
              onChange={(e) => setChannelName(e.target.value)} /> 
-            
+             <button className='button'>Edit Name</button>
           </form>
         </div>
     </div>
