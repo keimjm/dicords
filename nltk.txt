@@ -1,2 +1,3 @@
 stem
 word_tokenize
+punkt
