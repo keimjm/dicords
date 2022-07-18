@@ -3,6 +3,7 @@ from app.models.channel_message import ChannelMessage
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from app.models import db, DirectMessage, User
 from sqlalchemy import desc, or_, and_, asc
+from app.chat import pred_class, words, classes, get_response, data
 import os
 
 
@@ -75,3 +76,21 @@ def handle_chat(data):
     db.session.commit()
 
     emit("channel_chat", data, broadcast=True)
+
+
+# running the chatbot
+@socketio.on("chatbot")
+def handle_chatbot(chat_data):
+    message = chat_data["message"]
+    intents = pred_class(message, words, classes)
+    result = get_response(intents, data)
+    message = DirectMessage(
+        message=result,
+        sender_id=chat_data["sender"],
+        recipient_id=chat_data["recipient"],
+    )
+    db.session.add(message)
+    db.session.commit()
+    print(message)
+    # created_at = created_at.strftime('%m/%d/%Y')
+    emit("bot_response", {'message': message.to_dict(username='chatbot')})

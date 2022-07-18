@@ -1,5 +1,5 @@
 from .db import db
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy.orm import validates
 
 
