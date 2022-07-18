@@ -21,6 +21,7 @@ import Chat from './components/chat/ChatPage';
 import ChatChannel from './components/chat/ChatChannel';
 import NotFound from './components/NotFound'
 import Placeholder from './components/Placeholder';
+import ChatBot from './components/chat/ChatBot';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -73,6 +74,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute exact={true} path='/channels/@me/bot' >
+          <ChatBot/>
+        </ProtectedRoute>
         <ProtectedRoute exact={true} path='/channels/@me/:messageId' >
           <Chat/>
         </ProtectedRoute>

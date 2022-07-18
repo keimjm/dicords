@@ -7,11 +7,12 @@ import { Link , useHistory} from 'react-router-dom'
 function FriendList() {
     const users = useSelector(state => state.users?.users)
     const history = useHistory();
+    const sessionUser = useSelector(state => state.session.user)
 
     if (!users) return null
 
-    const showChat = (user) => {
-      history.push(`/channels/@me/${user.id}`)
+    const showChat = (id) => {
+      history.push(`/channels/@me/${id}`)
     }
 
 
@@ -24,16 +25,25 @@ function FriendList() {
 
     </div>
     <div className='sidebar-channels'>
+    <div className="friend-list" onClick={() => showChat("bot")}>
+        <div className='friend-icon'>
+        <span><i className="fa-brands fa-discord"></i></span>
+        </div>
+        <h4>chatbot</h4>
+    </div>
      {users?.map(user => {
-        return (
-        <div className="friend-list" onClick={() => showChat(user)}>
+      if (user.id == 6 || user.id == sessionUser.id) return null
+       return (
+        <div className="friend-list" onClick={() => showChat(user.id)}>
         <div className='friend-icon'>
         <span><i className="fa-brands fa-discord"></i></span>
         </div>
         <h4>{user.username}</h4>
     </div>
+          
         )
      })}   
+
 
 
    </div>

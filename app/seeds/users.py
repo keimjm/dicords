@@ -20,15 +20,25 @@ def seed_users():
         image_url='https://m.media-amazon.com/images/I/61jjNdNQ-DL._AC_SL1000_.jpg',
         username='charlie', email='charlie@aa.io', password='password', user_members=[x for x in servers if x.id == 2 or x.id == 1])
 
-    chase = User(
+    danny = User(
         image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaSP6seTMb4N1jcY1_L1z1yPelB91v2STK7Q&usqp=CAU',
-        username='chase', email='chase@aa.io', password='password', user_members=[x for x in servers if x.id == 2 or x.id == 3])
+        username='danny', email='danny@aa.io', password='password', user_members=[x for x in servers if x.id == 2 or x.id == 3])
+
+    chatbot = User(
+        image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaSP6seTMb4N1jcY1_L1z1yPelB91v2STK7Q&usqp=CAU',
+        username='chatbot', email='chatbot@aa.io', password='password')
+
+    julia = User(
+        image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaSP6seTMb4N1jcY1_L1z1yPelB91v2STK7Q&usqp=CAU',
+        username='julia', email='julia@aa.io', password='password', user_members=[x for x in servers if x.id == 2 or x.id == 3])
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(charlie)
-    db.session.add(chase)
+    db.session.add(danny)
+    db.session.add(chatbot)
+    db.session.add(julia)
 
     db.session.commit()
 
