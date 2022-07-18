@@ -6,10 +6,16 @@
 #
 
 -i https://pypi.org/simple
+absl-py==1.1.0; python_version >= '3.6'
 alembic==1.6.5
+astunparse==1.6.3
 bidict==0.22.0; python_version >= '3.7'
+cachetools==5.2.0; python_version ~= '3.7'
+certifi==2022.6.15; python_version >= '3.6'
+charset-normalizer==2.1.0; python_version >= '3.6'
 click==7.1.2
 dnspython==1.16.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+email-validator==1.2.1
 eventlet==0.30.2
 flask-cors==3.0.8
 flask-login==0.5.0
@@ -18,19 +24,59 @@ flask-socketio==5.2.0
 flask-sqlalchemy==2.5.1
 flask-wtf==0.15.1
 flask==2.0.1
+flatbuffers==1.12
+gast==0.4.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+google-auth-oauthlib==0.4.6; python_version >= '3.6'
+google-auth==2.9.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'
+google-pasta==0.2.0
 greenlet==1.1.0
+grpcio==1.47.0; python_version >= '3.6'
 gunicorn==20.1.0
+h5py==3.7.0; python_version >= '3.7'
+idna==3.3; python_version >= '3.5'
+importlib-metadata==4.12.0; python_version < '3.10'
 itsdangerous==2.0.1
 jinja2==3.0.1
+joblib==1.1.0; python_version >= '3.6'
+keras-preprocessing==1.1.2
+keras==2.9.0
+libclang==14.0.1
 mako==1.1.4
+markdown==3.4.1; python_version >= '3.7'
 markupsafe==2.0.1
+nltk==3.7
+numpy==1.23.1
+oauthlib==3.2.0; python_version >= '3.6'
+opt-einsum==3.3.0; python_version >= '3.5'
+packaging==21.3; python_version >= '3.6'
+protobuf==3.19.4; python_version >= '3.5'
+pyasn1-modules==0.2.8
+pyasn1==0.4.8
+pyparsing==3.0.9; python_full_version >= '3.6.8'
 python-dateutil==2.8.1
 python-dotenv==0.14.0
 python-editor==1.0.4
 python-engineio==4.3.3; python_version >= '3.6'
-python-socketio==5.7.0; python_version >= '3.6'
-setuptools==63.1.0; python_version >= '3.7'
+python-socketio==5.7.1; python_version >= '3.6'
+regex==2022.7.9; python_version >= '3.6'
+requests-oauthlib==1.3.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+requests==2.28.1; python_version >= '3.7' and python_version < '4'
+rsa==4.8; python_version >= '3.6'
+setuptools==63.2.0; python_version >= '3.7'
 six==1.15.0
 sqlalchemy==1.4.19
+tensorboard-data-server==0.6.1; python_version >= '3.6'
+tensorboard-plugin-wit==1.8.1
+tensorboard==2.9.1; python_version >= '3.6'
+tensorflow-estimator==2.9.0; python_version >= '3.7'
+tensorflow-io-gcs-filesystem==0.26.0; python_version < '3.11' and python_version >= '3.7'
+tensorflow==2.9.1
+termcolor==1.1.0
+tqdm==4.64.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+typing-extensions==4.3.0; python_version >= '3.7'
+urllib3==1.26.10; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4'
 werkzeug==2.0.1
+wheel==0.37.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
+wrapt==1.14.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
 wtforms==2.3.3
+zipp==3.8.1; python_version >= '3.7'
