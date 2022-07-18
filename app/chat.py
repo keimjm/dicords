@@ -9,6 +9,9 @@ import nltk
 import string
 import json
 
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('corpus')
 
 data = {"intents": [
     {"tag": "greeting",
