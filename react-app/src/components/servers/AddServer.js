@@ -15,17 +15,6 @@ function AddServer({onClose}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const errors = [];
-    
-        // if (serverName.length < 3 || serverName.length > 255) {
-        //   errors.push('Title length must be at least 3 and less than 255');
-        // }
-
-    
-        // if (errors.length) {
-        //   setErrors([...errors]);
-        //   return;
-        // }
 
         let payload = {
             serverName, 
