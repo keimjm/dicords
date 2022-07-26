@@ -3,6 +3,7 @@ from app.models.channel_message import ChannelMessage
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from app.models import db, DirectMessage, User
 from sqlalchemy import desc, or_, and_, asc
+from sqlalchemy.orm import joinedload
 from app.chat import pred_class, words, classes, get_response, data
 import os
 
@@ -22,16 +23,11 @@ socketio = SocketIO(cors_allowed_origins=origins)
 
 @socketio.on('get_dm_msgs')
 def handle_sync(data):
-    messages = DirectMessage.query.filter(or_(and_(DirectMessage.sender_id == data["sender"], DirectMessage.recipient_id == data["recipient"]), and_(DirectMessage.recipient_id == data["sender"], DirectMessage.sender_id == data["recipient"]))
-                                          ).order_by(asc(DirectMessage.updated_at)).all()
-
-    print(data)
-    user = User.query.get(data["sender"])
-
-    print(user)
+    messages = DirectMessage.query.options(joinedload('message_sent')).filter(or_(and_(DirectMessage.sender_id == data["user"], DirectMessage.recipient_id == data["friend"]), and_(DirectMessage.recipient_id == data["user"], DirectMessage.sender_id == data["friend"]))
+                                                                              ).order_by(asc(DirectMessage.updated_at)).all()
 
     emit('show_dm_msgs', {'messages': [
-         message.to_dict(username=user.username) for message in messages]})
+         message.to_dict(username=message.message_sent.username) for message in messages]})
 
 # handle chat messages
 
@@ -54,14 +50,11 @@ def handle_chat(data):
 
 @socketio.on('get_channel_msgs')
 def handle_channel_sync(data):
-    messages = ChannelMessage.query.filter_by(
+    messages = ChannelMessage.query.options(joinedload('channel_sender')).filter_by(
         channel_id=data["channel"]).order_by(asc(ChannelMessage.updated_at)).all()
 
-    user = User.query.get(data["sender"])
-    print(messages)
-
     emit('show_channel_msgs', {'messages': [
-         message.to_dict(username=user.username) for message in messages]})
+         message.to_dict(username=message.channel_sender.username) for message in messages]})
 
 
 @ socketio.on("channel_chat")

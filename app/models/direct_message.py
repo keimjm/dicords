@@ -31,5 +31,7 @@ class DirectMessage(db.Model):
             'recipient_id': self.recipient_id,
             'message': self.message,
             'username': username,
+            # 'username': sendUser,
+            # 'receiveUser': receiveUser,
             'created_at': created_at
         }
