@@ -130,6 +130,6 @@ each of the following variables:
 
 # Dicords
 
-Welcome to Dicords! This a clone of Discord using Python, React.js, Redux and PostgreSQL. After logging in you can create a new server, create a text channel and chat in those channels. You can also join an existing server as well as direct message another user on the site. Check it out for yourself.
+Welcome to Dicords! This a clone of Discord using Python, React.js, Redux and PostgreSQL. After logging in you can create a new server, create a text channel and chat in those channels. You can also join an existing server as well as direct message another user on the site. You can chat with a simple ai chatbot made using python's nltk and tensorflow library. Check it out for yourself.
 
 [Link to Live Site](https://aa-dicords.herokuapp.com)
