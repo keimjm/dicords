@@ -119,7 +119,6 @@ def join_server(id):
 
     form = JoinServer()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("PUGGY HUNT", form["user_id"])
 
     if form.validate_on_submit():
         server = Server.query.get(id)

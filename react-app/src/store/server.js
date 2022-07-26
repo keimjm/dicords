@@ -215,8 +215,6 @@ export const joinServer = (userId, serverId) => async (dispatch) => {
   const form = new FormData()
   form.append('user_id', userId)
 
-  console.log(userId)
-
   const response = await fetch(`/api/servers/${serverId}/join`, {
     method: "POST",
     body: form
