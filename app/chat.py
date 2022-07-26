@@ -11,6 +11,7 @@ import json
 
 nltk.download('punkt')
 nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 data = {"intents": [
     {"tag": "greeting",
