@@ -48,7 +48,7 @@ function Chat() {
 
   useEffect(() => {
       setMessages([])
-      socket.emit("get_dm_msgs", {sender: sessionUser?.id, username: sessionUser?.username, recipient: friend?.id,  })
+      socket.emit("get_dm_msgs", {user: sessionUser?.id, username: sessionUser?.username, friend: friend?.id,  })
   }, [friend])
 
   let content = (
