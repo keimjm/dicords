@@ -118,7 +118,7 @@ adam = tf.keras.optimizers.Adam(learning_rate=0.01, decay=1e-6)
 model.compile(loss='categorical_crossentropy',
               optimizer=adam,
               metrics=["accuracy"])
-print(model.summary())
+# print(model.summary())
 model.fit(x=train_X, y=train_y, epochs=300, verbose=1)
 
 
