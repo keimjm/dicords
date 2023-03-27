@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/dicords/static/css/main.cdcf9fb2.chunk.css",
+    "main.js": "/dicords/static/js/main.74c73df4.chunk.js",
+    "main.js.map": "/dicords/static/js/main.74c73df4.chunk.js.map",
+    "runtime-main.js": "/dicords/static/js/runtime-main.7d0599b1.js",
+    "runtime-main.js.map": "/dicords/static/js/runtime-main.7d0599b1.js.map",
+    "static/js/2.06833789.chunk.js": "/dicords/static/js/2.06833789.chunk.js",
+    "static/js/2.06833789.chunk.js.map": "/dicords/static/js/2.06833789.chunk.js.map",
+    "index.html": "/dicords/index.html",
+    "static/css/main.cdcf9fb2.chunk.css.map": "/dicords/static/css/main.cdcf9fb2.chunk.css.map",
+    "static/js/2.06833789.chunk.js.LICENSE.txt": "/dicords/static/js/2.06833789.chunk.js.LICENSE.txt",
+    "static/media/Discord-Logo-White.d12f1262.svg": "/dicords/static/media/Discord-Logo-White.d12f1262.svg",
+    "static/media/display.css": "/dicords/static/media/splash-image.adc2aaac.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7d0599b1.js",
+    "static/js/2.06833789.chunk.js",
+    "static/css/main.cdcf9fb2.chunk.css",
+    "static/js/main.74c73df4.chunk.js"
+  ]
+}
